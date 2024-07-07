@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7e77af9f1f4a40489c2508da923be76, type: 3}
+  m_Name: GridSettings
+  m_EditorClassIdentifier: 
+  <BlockPrefab>k__BackingField: {fileID: 3385740849446183064, guid: 2034e785be08b35409b5a3c7f4cf4459, type: 3}
+  <GridPosition>k__BackingField: {x: -8, y: 3}
+  <GridSize>k__BackingField: {x: 14, y: 8}
+  <BlockSize>k__BackingField: {x: 1, y: 0.5}
+  <BlockGap>k__BackingField: {x: 0.1, y: 0.1}
+  <RowColors>k__BackingField:
+  - {r: 1, g: 0.058307324, b: 0, a: 1}
+  - {r: 1, g: 0.05882353, b: 0, a: 1}
+  - {r: 1, g: 0.43089968, b: 0, a: 1}
+  - {r: 1, g: 0.43137255, b: 0, a: 1}
+  - {r: 0.013207156, g: 0.5943396, b: 0, a: 1}
+  - {r: 0.015686275, g: 0.59607846, b: 0, a: 1}
+  - {r: 1, g: 0.9676375, b: 0, a: 1}
+  - {r: 1, g: 0.96862745, b: 0, a: 1}
