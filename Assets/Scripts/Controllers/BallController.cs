@@ -50,7 +50,7 @@ namespace Breakout.Controllers
             }
             if (collision.gameObject.tag == m_paddleTag)
             {
-                m_direction = new Vector2(-m_direction.x, m_direction.y);
+                m_direction = new Vector2(m_direction.x, -m_direction.y);
             }
             //
             // if dead zone, die
