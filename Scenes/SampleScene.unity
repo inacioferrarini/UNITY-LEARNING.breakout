@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 91573650}
   m_Layer: 0
   m_Name: Paddle
-  m_TagString: Untagged
+  m_TagString: Paddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 353570585}
   - component: {fileID: 353570588}
   - component: {fileID: 353570587}
+  - component: {fileID: 353570589}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Untagged
@@ -428,6 +429,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &353570589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353570584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01bb989ab8271b44c90480fbf09ce5f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_gameManager: {fileID: 0}
+  m_upperWallTag: UpperWall
+  m_SideWallTag: SideWall
+  m_paddleTag: Paddle
+  m_initialBallSpeed: 7
 --- !u!1 &413436846
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,7 +771,7 @@ GameObject:
   - component: {fileID: 826599109}
   m_Layer: 0
   m_Name: WALL_Left
-  m_TagString: Untagged
+  m_TagString: SideWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -883,7 +901,7 @@ GameObject:
   - component: {fileID: 1265475986}
   m_Layer: 0
   m_Name: WALL_Right
-  m_TagString: Untagged
+  m_TagString: SideWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1414,7 +1432,7 @@ GameObject:
   - component: {fileID: 2081679298}
   m_Layer: 0
   m_Name: WALL_Top
-  m_TagString: Untagged
+  m_TagString: UpperWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
