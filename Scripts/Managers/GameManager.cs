@@ -37,7 +37,7 @@ namespace Breakout.Managers
         void Start()
         {
             m_ball.gameObject.SetActive(false);
-            CreateBlockGrid(m_gridSettings);
+            SpawnBlocks(m_gridSettings);
             UpdateScoreInHUD();
             Invoke(m_resetGameMethodName, m_resetGameDelay);
         }
@@ -53,21 +53,40 @@ namespace Breakout.Managers
             m_ball.transform.position = m_playerSettings.InitialBallPosition;
         }
 
-        private void CreateBlockGrid(GridSettings p_gridSettings)
+        private void SpawnBlocks(GridSettings p_gridSettings)
         {
             for (int r = 0; r < p_gridSettings.GridSize.y; r++)
             {
                 for (int c = 0; c < p_gridSettings.GridSize.x; c++)
                 {
-                    float xPosition = p_gridSettings.GridPosition.x + (p_gridSettings.BlockSize.x * c) + (p_gridSettings.BlockGap.x * (c -1));
-                    float yPosition = p_gridSettings.GridPosition.y - (p_gridSettings.BlockSize.y * r) - (p_gridSettings.BlockGap.y * (r -1));
-                    Vector3 blockPosition = new Vector3(xPosition, yPosition, 0);
-                    
-                    GameObject block = Instantiate(p_gridSettings.BlockPrefab, blockPosition, Quaternion.identity);
-                    block.GetComponent<SpriteRenderer>().color = p_gridSettings.RowColors[r];
-                    block.transform.localScale = p_gridSettings.BlockSize;
+                    SpawnBlock(p_gridSettings, r, c);
                 }
             }
+        }
+
+        private void SpawnBlock(GridSettings p_gridSettings, int p_row, int p_column)
+        {
+            Vector3 blockPosition = GetBlockPosition(p_gridSettings, p_row, p_column);
+
+            GameObject block = Instantiate(p_gridSettings.BlockPrefab, blockPosition, Quaternion.identity);
+            block.GetComponent<SpriteRenderer>().color = GetBlockColor(p_gridSettings.RowColors, p_row);
+            block.transform.localScale = p_gridSettings.BlockSize;
+        }
+
+        private Vector3 GetBlockPosition(GridSettings p_gridSettings, int p_row, int p_column)
+        {
+            float xPosition = p_gridSettings.GridPosition.x + (p_gridSettings.BlockSize.x * p_column) + (p_gridSettings.BlockGap.x * (p_column - 1));
+            float yPosition = p_gridSettings.GridPosition.y - (p_gridSettings.BlockSize.y * p_row) - (p_gridSettings.BlockGap.y * (p_row - 1));
+            return new Vector3(xPosition, yPosition, 0);
+        }
+
+        private Color GetBlockColor(Color[] p_rowColors, int p_row)
+        {
+            if (p_row >= p_rowColors.Length)
+            {
+                return Color.white;
+            }
+            return p_rowColors[p_row];
         }
 
         private void ResetGame()
