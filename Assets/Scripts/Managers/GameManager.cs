@@ -1,12 +1,11 @@
 using Breakout.Managers.Settings;
-using System;
 using TMPro;
 using UnityEngine;
 
 namespace Breakout.Managers
 {
 
-    public class GameManager : MonoBehaviour
+    public sealed class GameManager : MonoBehaviour
     {
         #region Constants
 

@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01bb989ab8271b44c90480fbf09ce5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_gameManager: {fileID: 0}
+  m_gameManager: {fileID: 561398424}
   m_upperWallTag: UpperWall
   m_SideWallTag: SideWall
   m_paddleTag: Paddle
