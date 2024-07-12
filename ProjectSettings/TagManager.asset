@@ -8,6 +8,7 @@ TagManager:
   - SideWall
   - Paddle
   - Block
+  - DeathZone
   layers:
   - Default
   - TransparentFX

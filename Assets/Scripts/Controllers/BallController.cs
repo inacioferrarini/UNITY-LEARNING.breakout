@@ -9,7 +9,7 @@ namespace Breakout.Controllers
         #region Serialized Properties
 
         [SerializeField] private GameManager m_gameManager;
-        [SerializeField] private string m_upperWallTag, m_SideWallTag, m_paddleTag, m_blockTag;
+        [SerializeField] private string m_upperWallTag, m_SideWallTag, m_paddleTag, m_blockTag, m_deathZoneTag;
         [SerializeField] private float m_initialBallSpeed = 7f;
 
         #endregion
@@ -58,9 +58,10 @@ namespace Breakout.Controllers
                 // Play Particle Effect
                 Destroy(collision.gameObject);
             }
-            //
-            // if dead zone, die
-            //
+            else if (collision.gameObject.tag == m_deathZoneTag)
+            {
+                m_gameManager.PlayerDied();
+            }
         }
 
         #endregion

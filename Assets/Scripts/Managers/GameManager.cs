@@ -1,4 +1,6 @@
 using Breakout.Managers.Settings;
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -36,14 +38,21 @@ namespace Breakout.Managers
         void Start()
         {
             m_ball.gameObject.SetActive(false);
-            SpawnBlocks(m_gridSettings);
-            UpdateScoreInHUD();
+            ResetBlocks();
             Invoke(m_resetGameMethodName, m_resetGameDelay);
         }
 
         #endregion
 
         #region Game State
+
+        public void PlayerDied()
+        {
+            m_ball.gameObject.SetActive(false);
+            // Show Hud Message regarding player death
+            ResetBlocks();
+            Invoke(m_resetGameMethodName, m_resetGameDelay);
+        }
 
         public void ResetPaddleAndBall()
         {
@@ -86,6 +95,18 @@ namespace Breakout.Managers
                 return Color.white;
             }
             return p_rowColors[p_row];
+        }
+
+        private void ResetBlocks()
+        {
+            // Remove Existing blocks
+            GameObject[] blocksToRemove = GameObject.FindGameObjectsWithTag("Block");
+            foreach (var item in blocksToRemove)
+            {
+                Destroy(item);
+            }
+
+            SpawnBlocks(m_gridSettings);
         }
 
         private void ResetGame()
