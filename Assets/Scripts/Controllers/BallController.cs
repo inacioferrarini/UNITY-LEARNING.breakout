@@ -9,7 +9,7 @@ namespace Breakout.Controllers
         #region Serialized Properties
 
         [SerializeField] private GameManager m_gameManager;
-        [SerializeField] private string m_upperWallTag, m_SideWallTag, m_paddleTag;
+        [SerializeField] private string m_upperWallTag, m_SideWallTag, m_paddleTag, m_blockTag;
         [SerializeField] private float m_initialBallSpeed = 7f;
 
         #endregion
@@ -44,13 +44,19 @@ namespace Breakout.Controllers
             {
                 m_direction = new Vector2(m_direction.x, -m_direction.y);
             }
-            if (collision.gameObject.tag == m_SideWallTag)
+            else if (collision.gameObject.tag == m_SideWallTag)
             {
                 m_direction = new Vector2(-m_direction.x, m_direction.y);
             }
-            if (collision.gameObject.tag == m_paddleTag)
+            else if (collision.gameObject.tag == m_paddleTag)
             {
                 m_direction = new Vector2(m_direction.x, -m_direction.y);
+            }
+            else if (collision.gameObject.tag == m_blockTag)
+            {
+                m_direction = new Vector2(-m_direction.x, -m_direction.y); // Add a random angle
+                // Play Particle Effect
+                Destroy(collision.gameObject);
             }
             //
             // if dead zone, die
