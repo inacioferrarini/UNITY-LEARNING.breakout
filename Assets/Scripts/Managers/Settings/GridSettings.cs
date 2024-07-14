@@ -14,6 +14,7 @@ namespace Breakout.Managers.Settings
         [field: SerializeField] public Vector2 BlockSize { get; private set; }
         [field: SerializeField] public Vector2 BlockGap { get; private set; }
         [field: SerializeField] public Color[] RowColors { get; private set; }
+        [field: SerializeField] public int[] RowPoints { get; private set; }
 
         #endregion
     }

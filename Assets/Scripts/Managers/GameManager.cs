@@ -1,3 +1,4 @@
+using Breakout.Items;
 using Breakout.Managers.Settings;
 using System;
 using System.Collections.Generic;
@@ -48,8 +49,11 @@ namespace Breakout.Managers
 
         public void PlayerDied()
         {
+            
             m_ball.gameObject.SetActive(false);
             // Show Hud Message regarding player death
+            m_playerLives--;
+            UpdateHUDText();
             ResetBlocks();
             Invoke(m_resetGameMethodName, m_resetGameDelay);
         }
@@ -59,6 +63,12 @@ namespace Breakout.Managers
             m_paddle.transform.position = m_playerSettings.InitialPaddlePosition;
             m_paddle.localScale = m_playerSettings.InitialPaddleSize;
             m_ball.transform.position = m_playerSettings.InitialBallPosition;
+        }
+
+        public void AddPlayerScore(int points)
+        {
+            m_playerScore += points;
+            UpdateHUDText();
         }
 
         private void SpawnBlocks(GridSettings p_gridSettings)
@@ -78,6 +88,7 @@ namespace Breakout.Managers
 
             GameObject block = Instantiate(p_gridSettings.BlockPrefab, blockPosition, Quaternion.identity);
             block.GetComponent<SpriteRenderer>().color = GetBlockColor(p_gridSettings.RowColors, p_row);
+            block.GetComponent<Block>().Points = GetBlockPoints(p_gridSettings.RowPoints, p_row);
             block.transform.localScale = p_gridSettings.BlockSize;
         }
 
@@ -95,6 +106,15 @@ namespace Breakout.Managers
                 return Color.white;
             }
             return p_rowColors[p_row];
+        }
+
+        private int GetBlockPoints(int[] p_rowPoints, int p_row)
+        {
+            if (p_row >= p_rowPoints.Length)
+            {
+                return 0;
+            }
+            return p_rowPoints[p_row];
         }
 
         private void ResetBlocks()
@@ -116,14 +136,14 @@ namespace Breakout.Managers
 
             m_playerScore = 0;
             m_playerLives = m_maxLives;
-            UpdateScoreInHUD();
+            UpdateHUDText();
         }
 
         #endregion
 
         #region UI Logic
 
-        private void UpdateScoreInHUD()
+        private void UpdateHUDText()
         {
             m_playerLivesText.text = m_playerLives.ToString();
             m_playerScoreText.text = m_playerScore.ToString();

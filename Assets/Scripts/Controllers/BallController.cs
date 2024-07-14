@@ -1,3 +1,4 @@
+using Breakout.Items;
 using Breakout.Managers;
 using UnityEngine;
 
@@ -55,6 +56,8 @@ namespace Breakout.Controllers
             else if (collision.gameObject.tag == m_blockTag)
             {
                 m_direction = new Vector2(-m_direction.x, -m_direction.y); // Add a random angle
+                int points = collision.gameObject.GetComponent<Block>().Points;
+                m_gameManager.AddPlayerScore(points);
                 // Play Particle Effect
                 Destroy(collision.gameObject);
             }
