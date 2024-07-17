@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b564877d05c443489c3515ac7ceeff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_gameManager: {fileID: 561398424}
   m_speed: 12
   m_horizontalLimitMax: 7.5
   m_horizontalLimitMin: -7.5

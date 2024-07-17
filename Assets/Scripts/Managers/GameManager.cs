@@ -1,7 +1,5 @@
 using Breakout.Items;
 using Breakout.Managers.Settings;
-using System;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -28,6 +26,12 @@ namespace Breakout.Managers
 
         #endregion
 
+        #region Public Properties
+
+        public bool IsUserInteractionEnabled { get; private set; }
+
+        #endregion
+
         #region Private Properties
 
         private int m_playerLives, m_playerScore;
@@ -49,13 +53,15 @@ namespace Breakout.Managers
 
         public void PlayerDied()
         {
-            
+            IsUserInteractionEnabled = false;
             m_ball.gameObject.SetActive(false);
             // Show Hud Message regarding player death
+            m_paddle.transform.position = m_playerSettings.InitialPaddlePosition;
+            m_paddle.localScale = new Vector3(18.0f, m_paddle.localScale.y, m_paddle.localScale.z);
             m_playerLives--;
             UpdateHUDText();
             ResetBlocks();
-            Invoke(m_resetGameMethodName, m_resetGameDelay);
+            Invoke(m_resetGameMethodName, m_resetGameDelay); // This way, lives are being reseted
         }
 
         public void ResetPaddleAndBall()
@@ -135,8 +141,12 @@ namespace Breakout.Managers
             ResetPaddleAndBall();
 
             m_playerScore = 0;
-            m_playerLives = m_maxLives;
+            if (m_playerLives == 0)
+            {
+                m_playerLives = m_maxLives;
+            }
             UpdateHUDText();
+            IsUserInteractionEnabled = true;
         }
 
         #endregion

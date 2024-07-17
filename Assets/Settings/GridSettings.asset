@@ -15,7 +15,7 @@ MonoBehaviour:
   <BlockPrefab>k__BackingField: {fileID: 3385740849446183064, guid: 2034e785be08b35409b5a3c7f4cf4459, type: 3}
   <GridPosition>k__BackingField: {x: -7.7, y: 3}
   <GridSize>k__BackingField: {x: 15, y: 8}
-  <BlockSize>k__BackingField: {x: 1, y: 0.5}
+  <BlockSize>k__BackingField: {x: 1, y: 0.25}
   <BlockGap>k__BackingField: {x: 0.1, y: 0.1}
   <RowColors>k__BackingField:
   - {r: 1, g: 0.058307324, b: 0, a: 1}

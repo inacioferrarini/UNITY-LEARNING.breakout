@@ -1,3 +1,4 @@
+using Breakout.Managers;
 using UnityEngine;
 
 namespace Breakout.Controllers
@@ -7,6 +8,7 @@ namespace Breakout.Controllers
     {
         #region Serialized Properties
 
+        [SerializeField] private GameManager m_gameManager;
         [SerializeField] private float m_speed = 4;
         [SerializeField] private float m_horizontalLimitMax = 4.5f, m_horizontalLimitMin = -4.5f;
         [SerializeField] private string m_axisName;
@@ -17,6 +19,11 @@ namespace Breakout.Controllers
 
         void Update()
         {
+            if (!m_gameManager.IsUserInteractionEnabled)
+            {
+                return;
+            }
+
             float move = Input.GetAxis(m_axisName) * m_speed;
 
             float nextPlayerPosition = transform.position.x + (move * Time.deltaTime);
