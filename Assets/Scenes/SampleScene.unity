@@ -857,7 +857,7 @@ MonoBehaviour:
   m_playerScoreText: {fileID: 1686865780}
   m_gridSettings: {fileID: 11400000, guid: ace506ebbba3abc4a83ea94947cbdf3c, type: 2}
   m_playerSettings: {fileID: 11400000, guid: 611b721fdabfa5542875e6ebb04b74b0, type: 2}
-  m_ball: {fileID: 353570587}
+  m_ball: {fileID: 353570584}
   m_paddle: {fileID: 91573649}
   m_maxLives: 3
 --- !u!1 &565308586

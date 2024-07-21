@@ -37,6 +37,15 @@ namespace Breakout.Controllers
 
         #endregion
 
+        #region State Management
+
+        public void AddSpeed(float speed)
+        {
+            m_speed += speed;
+        }
+
+        #endregion
+
         #region Collision Handling
 
         private void OnCollisionEnter2D(Collision2D collision)

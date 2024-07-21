@@ -1,3 +1,4 @@
+using Breakout.Controllers;
 using Breakout.Items;
 using Breakout.Managers.Settings;
 using TMPro;
@@ -20,7 +21,7 @@ namespace Breakout.Managers
         [SerializeField] private TextMeshProUGUI m_playerLivesText, m_playerScoreText;
         [SerializeField] private GridSettings m_gridSettings;
         [SerializeField] private PlayerSettings m_playerSettings;
-        [SerializeField] private Rigidbody2D m_ball;
+        [SerializeField] private GameObject m_ball;
         [SerializeField] private Transform m_paddle;
         [SerializeField] private int m_maxLives = 3;
 
@@ -35,6 +36,7 @@ namespace Breakout.Managers
         #region Private Properties
 
         private int m_playerLives, m_playerScore;
+        private int m_pointsToIncrease;
 
         #endregion
 
@@ -42,7 +44,8 @@ namespace Breakout.Managers
 
         void Start()
         {
-            m_ball.gameObject.SetActive(false);
+            m_pointsToIncrease = m_playerSettings.SpeedIncreasePoints;
+            m_ball.SetActive(false);
             ResetBlocks();
             Invoke(m_resetGameMethodName, m_resetGameDelay);
         }
@@ -54,7 +57,7 @@ namespace Breakout.Managers
         public void PlayerDied()
         {
             IsUserInteractionEnabled = false;
-            m_ball.gameObject.SetActive(false);
+            m_ball.SetActive(false);
             // Show Hud Message regarding player death
             m_paddle.transform.position = m_playerSettings.InitialPaddlePosition;
             m_paddle.localScale = new Vector3(18.0f, m_paddle.localScale.y, m_paddle.localScale.z);
@@ -74,6 +77,17 @@ namespace Breakout.Managers
         public void AddPlayerScore(int points)
         {
             m_playerScore += points;
+            
+            if (m_pointsToIncrease <= 0)
+            {
+                m_pointsToIncrease = m_playerSettings.SpeedIncreasePoints;
+                m_ball.GetComponent<BallController>().AddSpeed(m_playerSettings.SpeedIncreaseValue);
+            }
+            else
+            {
+                m_pointsToIncrease -= m_playerSettings.SpeedIncreasePoints;
+            }
+
             UpdateHUDText();
         }
 
